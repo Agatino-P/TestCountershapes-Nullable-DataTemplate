@@ -1,0 +1,241 @@
+﻿<Window x:Class="TestCountershapes.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:CounterShapes="clr-namespace:CounterShapes;assembly=CounterShapes"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:TestCountershapes"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        Title="MainWindow" Width="800" Height="850">
+    <Window.Resources>
+
+        <DataTemplate x:Key="DataTemplateCtrs">
+            <Grid x:Name="grdDetail" HorizontalAlignment="Left"
+                  VerticalAlignment="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="70" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Margin="3"
+                       HorizontalAlignment="Left" VerticalAlignment="Center"
+                       Content="Nullable:" />
+                <CheckBox Grid.Row="0" Grid.Column="1" Margin="3"
+                          HorizontalAlignment="Left" VerticalAlignment="Center"
+                          Content=""
+                          IsChecked="{Binding Nullable}" />
+                <Label Grid.Row="1" Grid.Column="0" Margin="3"
+                       HorizontalAlignment="Left" VerticalAlignment="Center"
+                       Content="X:" />
+                <TextBox Grid.Row="1" Grid.Column="1" Width="120" Height="23"
+                         Margin="3" HorizontalAlignment="Left"
+                         VerticalAlignment="Center"
+                         Text="{Binding X, TargetNullValue={x:Static sys:String.Empty}}" />
+                <Label Grid.Row="2" Grid.Column="0" Margin="3"
+                       HorizontalAlignment="Left" VerticalAlignment="Center"
+                       Content="Y:" />
+                <TextBox Grid.Row="2" Grid.Column="1" Width="120" Height="23"
+                         Margin="3" HorizontalAlignment="Left"
+                         VerticalAlignment="Center"
+                         Text="{Binding Y, TargetNullValue={x:Static sys:String.Empty}}" />
+                <Label Grid.Row="3" Grid.Column="0" Margin="3"
+                       HorizontalAlignment="Left" VerticalAlignment="Center"
+                       Content="Ym:" />
+                <TextBox Grid.Row="3" Grid.Column="1" Width="120" Height="23"
+                         Margin="3" HorizontalAlignment="Left"
+                         VerticalAlignment="Center"
+                         Text="{Binding Ym, TargetNullValue={x:Static sys:String.Empty}}" />
+                <Label Grid.Row="4" Grid.Column="0" Margin="3"
+                       HorizontalAlignment="Left" VerticalAlignment="Center"
+                       Content="Z:" />
+                <TextBox Grid.Row="4" Grid.Column="1" Width="120" Height="23"
+                         Margin="3" HorizontalAlignment="Left"
+                         VerticalAlignment="Center"
+                         Text="{Binding Z, TargetNullValue={x:Static sys:String.Empty}}" />
+                <Label Grid.Row="5" Grid.Column="0" Margin="3"
+                       VerticalAlignment="Center" Content="Solid Y:" />
+                <CheckBox Grid.Row="5" Grid.Column="1" Margin="3"
+                          VerticalAlignment="Center"
+                          IsChecked="{Binding SolidY}"
+                          IsThreeState="True" />
+                <Label Grid.Row="6" Grid.Column="0" Margin="3"
+                       VerticalAlignment="Center" Content="Solid Z:" />
+                <CheckBox Grid.Row="6" Grid.Column="1" Margin="3"
+                          VerticalAlignment="Center"
+                          IsChecked="{Binding SolidZ}"
+                          IsThreeState="True" />
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="DataTemplateCtrsRecordDetail">
+            <Grid x:Name="grdDetail" HorizontalAlignment="Left"
+                  VerticalAlignment="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="70" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Margin="3"
+                       HorizontalAlignment="Left" VerticalAlignment="Center"
+                       Content="Phase:" />
+                <TextBox Grid.Row="0" Grid.Column="1" Width="120" Height="23"
+                         Margin="3" HorizontalAlignment="Left"
+                         VerticalAlignment="Center"
+                         Text="{Binding Phase, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
+                <Label Grid.Row="1" Grid.Column="0" Margin="3"
+                       HorizontalAlignment="Left" VerticalAlignment="Center"
+                       Content="Angle:" />
+                <TextBox Grid.Row="1" Grid.Column="1" Width="120" Height="23"
+                         Margin="3" HorizontalAlignment="Left"
+                         VerticalAlignment="Center"
+                         Text="{Binding Angle, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
+
+                <ContentControl Grid.Row="2" Grid.ColumnSpan="2"
+                                Content="{Binding Ctrs}"
+                                ContentTemplate="{StaticResource DataTemplateCtrs}" />
+
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="DataTemplateCtrsRecordMinimal">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Nullable:" />
+                    <CheckBox VerticalAlignment="Center"
+                              IsChecked="{Binding Ctrs.Nullable, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"
+                              IsEnabled="False" />
+                    <Label VerticalAlignment="Center" Content="Phase:" />
+                    <TextBlock VerticalAlignment="Center" Text="{Binding Phase, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
+                    <Label VerticalAlignment="Center" Content="Angle:" />
+                    <TextBlock VerticalAlignment="Center" Text="{Binding Angle, TargetNullValue={x:Static sys:String.Empty}}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label VerticalAlignment="Center" Content="X:" />
+                    <TextBlock VerticalAlignment="Center" Text="{Binding Ctrs.X, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
+                    <Label VerticalAlignment="Center" Content="Y:" />
+                    <TextBlock VerticalAlignment="Center" Text="{Binding Ctrs.Y, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
+                    <Label Content="Ym:" />
+                    <TextBlock VerticalAlignment="Center" Text="{Binding Ctrs.Ym, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
+                    <Label VerticalAlignment="Center" Content="Z:" />
+                    <TextBlock VerticalAlignment="Center" Text="{Binding Ctrs.Z, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Solid Y:" />
+                    <CheckBox VerticalAlignment="Center" Content=""
+                              IsChecked="{Binding Ctrs.SolidY, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"
+                              IsEnabled="False" />
+                    <Label VerticalAlignment="Center" Content="Solid Z:" />
+                    <CheckBox VerticalAlignment="Center" Content=""
+                              IsChecked="{Binding Ctrs.SolidZ, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"
+                              IsEnabled="False" />
+                </StackPanel>
+            </StackPanel>
+        </DataTemplate>
+
+
+    </Window.Resources>
+
+    <Window.DataContext>
+        <local:MainwindowViewModel />
+    </Window.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <StackPanel x:Name="spCol0">
+            <ListBox MinHeight="70" IsSynchronizedWithCurrentItem="True"
+                     ItemTemplate="{StaticResource DataTemplateCtrsRecordMinimal}"
+                     ItemsSource="{Binding CtrsRecords.Records}"
+                     SelectedValuePath="Angle" />
+            <Button Command="{Binding AddCmd}" Content="Add" />
+            <ContentControl Content="{Binding CtrsRecordAdd}" ContentTemplate="{StaticResource DataTemplateCtrsRecordDetail}" />
+        </StackPanel>
+
+        <Border x:Name="brdCol1" Grid.Column="1" BorderBrush="Black"
+                BorderThickness="1">
+            <StackPanel>
+
+                <StackPanel>
+                    <Border Margin="2" Padding="2" BorderBrush="DarkGray"
+                            BorderThickness="0">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="70" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="70" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Phase:" />
+                            <TextBox Grid.Column="1" Text="{Binding Phase}" />
+                            <Button Grid.Column="2"
+                                    Command="{Binding SearchPhaseCmd}"
+                                    Content="Search" DockPanel.Dock="Right" />
+                        </Grid>
+                    </Border>
+
+                    <Border Margin="2" Padding="2" BorderBrush="DarkGray"
+                            BorderThickness="0">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="70" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="70" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Angle:" />
+                            <TextBox Grid.Column="1" Text="{Binding Angle}" />
+                            <Button Grid.Column="2"
+                                    Command="{Binding SearchAngleCmd}"
+                                    Content="Search" DockPanel.Dock="Right" />
+                        </Grid>
+                    </Border>
+
+                </StackPanel>
+                <GroupBox Header="Found">
+                    <ContentControl Content="{Binding CtrsFound}" ContentTemplate="{StaticResource DataTemplateCtrs}" />
+                </GroupBox>
+                <Border BorderBrush="Black" BorderThickness="1" />
+                <GroupBox Header="Nullable">
+                    <ContentControl Content="{Binding CtrsNullable}" ContentTemplate="{StaticResource DataTemplateCtrs}" />
+                </GroupBox>
+                <Button Grid.Column="2"
+                        Command="{Binding ToValuedCmd}"
+                        Content="ToValued" DockPanel.Dock="Right" />
+
+                <GroupBox Header="Valued">
+                    <ContentControl Content="{Binding CtrsValued}" ContentTemplate="{StaticResource DataTemplateCtrs}" />
+                </GroupBox>
+
+            </StackPanel>
+        </Border>
+        <StackPanel x:Name="spCol2" Grid.Column="2">
+
+            <GroupBox Header="Overlapped">
+                <ContentControl Content="{Binding CtrsOverlapped}" ContentTemplate="{StaticResource DataTemplateCtrs}" />
+            </GroupBox>
+
+            <GroupBox Header="Overlapping">
+                <ContentControl Content="{Binding CtrsOverlapping}" ContentTemplate="{StaticResource DataTemplateCtrs}" />
+            </GroupBox>
+
+            <Button Command="{Binding OverlapCmd}" Content="Overlap" />
+
+            <GroupBox Header="Result">
+                <ContentControl Content="{Binding CtrsResult}" ContentTemplate="{StaticResource DataTemplateCtrs}" />
+            </GroupBox>
+
+        </StackPanel>
+
+    </Grid>
+</Window>
